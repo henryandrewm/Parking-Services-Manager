@@ -1,0 +1,69 @@
+body{
+    text-align: center;
+}
+body .index-buttons {
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: gainsboro;
+}
+
+body .function-buttons {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 5px auto;
+    background-color: gainsboro;
+}
+
+.hidden {
+    width: 1000px;
+    margin: auto;
+    visibility: hidden;
+    height: 0px;
+}
+
+.hidden div {
+    float: left;
+    width: 499px;
+    height: 0px;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.hidden .div1 {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: none;
+    text-align: left;
+    width: 459px;
+    padding-left: 40px;
+}
+
+.hidden .div2 {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: none;
+}
+
+.hidden .format {
+    float: none;
+    margin: 0px 0px 20px 0px;
+    padding-bottom: 20px;
+    padding-left: 298px;
+    text-align: left;
+    width: 700px;
+    border: 1px solid black;
+}
+
+.hidden div textarea {
+    height: 300px;
+    margin: 20px 20px 0px 20px;
+    width: 75%;
+}
+
+select {
+    size: 3;
+}

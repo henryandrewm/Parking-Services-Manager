@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<?php include ('loader.php'); ?>
+
+<html>
+    <head>
+        <title>Parking Services-Campus Management</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="stylesheet.css" rel="stylesheet">
+    </head>
+    <body>
+        <p>Please choose which function you would like to use.</p>
+        <button class="function-buttons" onclick="dropTutorial('1')">Add a campus</button>
+        <div class="hidden" id="1">
+            <div class="format">
+                <p>Please fill in all fields to add the new record in the database.</p>
+                <form id="add-campus" action="campus_handle.php" method="POST">
+                    <p><label>Is this a secondary campus?</label><input name="secondary_campus1" type="checkbox"></p>
+                    <p><label>Zipcode:</label><input name="zipcode1" type="number" min="10000" max="99999"></p>
+                    <p><input type="submit" value="submit1"></p>
+                </form>
+            </div>
+        </div>
+        <button class="function-buttons" onclick="dropTutorial('2')">Find a campus</button>
+        <div class="hidden" id="2">
+            <div class="div1">
+                <p>Please fill in all fields to find a match.</p>
+                <form id="find-campus" action="campus_handle.php" method="POST">
+                    <p><label>Is this a secondary campus?</label><input name="secondary_campus2" type="checkbox"></p>
+                    <p><label>Zipcode:</label><input name="zipcode2" type="number" min="10000" max="99999"></p>
+                    <p>Or by parking lot:</p>
+                    <p>
+                        <label>Parking lot:</label>
+                        <select name="parking_lot2" id="parking-lot">
+                            <option value="">Choose a parking lot</option>
+                            <?php
+                                $sql = "SELECT name FROM parking_lot";
+                                $result = $pdo->query($sql);
+
+                                while($row = $result->fetch()){
+                                    $name = $row['name'].str_replace(" ", "_");
+                                    echo "<option value='" . $name . "'>" . $name . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </p>
+                    <p>Or by employee:</p>
+                    <p><label>First name:</label><input name="first2" type="text" placeholder="First Name"></p>
+                    <p><label>Last name:</label><input name="last2" type="text" placeholder="Last Name"></p>
+                    <p><label>Hours:</label><input name="hours2" type="number" min="1" max="70"></p>
+                    <p><input type="submit" value="submit2"></p>
+                </form>
+            </div>
+            <div class="div2">
+                <textarea id="text1"></textarea>
+                <p>
+                    <button>Edit Record</button>
+                    <button>Remove Record</button>
+                    <button>Cancel</button>
+                    <button>Submit Changes</button>
+                </p>
+            </div>
+        </div>
+        <button class="function-buttons" onclick="dropTutorial('3')">Find campuses</button>
+        <div class="hidden" id="3">
+            <div class="div1">
+                <p>Please fill in the information that you would like the database to match.</p>
+                <form id="multifind-campus" action="campus_handle.php" method="POST">
+                    <p>By type:</p>
+                    <p><label>Is this a secondary campus?</label><input name="secondary_campus3" type="checkbox"></p>
+                    <p>Or by zipcode:</p>
+                    <p>
+                        <label>Starting zipcode</label><input name="zipcode_start3" type="number" min="10000" max="99999">
+                        <label>Ending zipcode</label><input name="zipcode_finish3" type="number" min="10000" max="99999">
+                    </p>
+                    <p><input type="submit" value="submit3"></p>
+                </form>
+            </div>
+            <div class="div2">
+                <textarea id="text2"></textarea>
+            </div>
+        </div>
+        <!-- -->
+        <button class="function-buttons" onclick="dropTutorial('4')">Add a parking lot</button>
+        <div class="hidden" id="4">
+            <div class="format">
+                <p>Please fill in all fields to add the new record in the database.</p>
+                <form id="add-lot" action="parking_handle.php" method="POST">
+                    <p><label>Parking lot name:</label><input name="parking_lot_name1" type="text"></p>
+                    <p><label>Parking spaces available:</label><input name="spaces1" type="number" min="1" max="50000"></p>
+                    <p><input type="submit" value="submit1"></p>
+                </form>
+            </div>
+        </div>
+        <button class="function-buttons" onclick="dropTutorial('5')">Find a parking lot</button>
+        <div class="hidden" id="5">
+            <div class="div1">
+                <p>Please fill in all fields to find a match.</p>
+                <form id="find-lot" action="parking_handle.php" method="POST">
+                    <p><label>Parking lot name:</label><input name="parking_lot_name2" type="text"></p>
+                    <p><label>Parking spaces available:</label><input name="spaces2" type="number" min="1" max="50000"></p>
+                    <p>Or by campus:</p>
+                    <p>
+                        <label>Campus:</label>
+                        <select name="campus2" id="campus1">
+                            <option value="">Choose a campus</option>
+                            <?php
+                                $sql = "SELECT campus_name FROM campus";
+                                $result = $pdo->query($sql);
+
+                                while($row = $result->fetch()){
+                                    $name = $row['campus_name'].str_replace(" ", "_");
+                                    echo "<option value='" . $name . "'>" . $name . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </p>
+                    <p><input type="submit" value="submit2"></p>
+                </form>
+            </div>
+            <div class="div2">
+                <textarea id="text3"></textarea>
+                <p>
+                    <button>Edit Record</button>
+                    <button>Remove Record</button>
+                    <button>Cancel</button>
+                    <button>Submit Changes</button>
+                </p>
+            </div>
+        </div>
+        <button class="function-buttons" onclick="dropTutorial('6')">Find parking lots</button>
+        <div class="hidden" id="6">
+            <div class="div1">
+                <p>Please fill in the information that you would like the database to match.</p>
+                <form id="multifind-lot" action="parking_handle.php" method="POST">
+                        <p><label>Parking lot name:</label><input name="parking_lot_name3" type="text"></p>
+                        <p><label>Parking spaces available:</label><input name="spaces3" type="number" min="1" max="50000"></p>
+                        <p>Or by campus:</p>
+                        <p>
+                            <label>Campus:</label>
+                            <select name="campus3" id="campus2">
+                                <option value="">Choose a campus</option>
+                                <?php
+                                    $sql = "SELECT campus_name FROM campus";
+                                    $result = $pdo->query($sql);
+
+                                    while($row = $result->fetch()){
+                                        $name = $row['campus_name'].str_replace(" ", "_");
+                                        echo "<option value='" . $name . "'>" . $name . "</option>";
+                                    }
+                                ?>
+                            </select>
+                        </p>
+                        <p><input type="submit" value="submit3"></p>
+                    </form>
+            </div>
+            <div class="div2">
+                <textarea id="text4"></textarea>
+            </div>
+        </div>
+        <script src="interface_script.js" type="text/javascript"></script>
+    </body>
+</html>
