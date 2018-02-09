@@ -123,9 +123,9 @@ function dropTutorial(val) {
                     children[j].style.height = ticket + "px";
                 } else {
                     children[j].style.height = div + "px";
-                }
-                children[j].style.marginBottom = "20px";
+                }      
             }
+            children[j].style.marginBottom = "5px";
         }
         var objs = document.getElementsByClassName("hidden");
         for(var i = 0; i < objs.length; i++){
